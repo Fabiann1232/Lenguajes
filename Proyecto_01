@@ -1,0 +1,40 @@
+import re
+
+# Paso 1: Definir el lenguaje de programación
+# En este paso, no es necesario definir explícitamente las reglas de un lenguaje de programación.
+# Estamos trabajando con un lenguaje de programación simplificado que tiene identificadores, números enteros y operadores aritméticos.
+
+# Paso 2: Definir la lista de palabras clave y operadores aritméticos
+palabras_clave = ["suma", "resta", "multiplicación", "división", "otra_palabra_clave"]
+operadores_aritmeticos = ["+", "-", "*", "/"]
+
+# Paso 3: Definir la función lexer que realiza el análisis léxico
+def lexer(cadena):
+    tokens = []  # Lista para almacenar los tokens encontrados en la cadena
+    palabras = cadena.split()  # Dividir la cadena en palabras
+    
+    for palabra in palabras:
+        if palabra in palabras_clave:
+            tokens.append({"tipo": "operador", "valor": palabra})
+        elif palabra in operadores_aritmeticos:
+            tokens.append({"tipo": "operador", "valor": palabra})
+        elif re.match(r'^[a-zA-Z_]\w*$', palabra):
+            tokens.append({"tipo": "identificador", "valor": palabra})
+        elif re.match(r'^\d+$', palabra):
+            tokens.append({"tipo": "numero", "valor": palabra})
+        else:
+            tokens.append({"tipo": "desconocido", "valor": palabra})
+    
+    return tokens
+
+# Paso 5: Programa principal
+def main():
+    entrada_usuario = input("Ingrese una cadena de entrada: ")
+    tokens = lexer(entrada_usuario)
+    
+    print("Lista de tokens resultante:")
+    for token in tokens:
+        print(token)
+
+if __name__ == "__main__":
+    main()
