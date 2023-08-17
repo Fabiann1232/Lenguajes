@@ -36,5 +36,36 @@ def main():
     for token in tokens:
         print(token)
 
+# Agregar código para manejar matriz 3x3 y operaciones
+matriz = [[0] * 3 for _ in range(3)]
+
+for i in range(3):
+    for j in range(3):
+        matriz[i][j] = int(input(f"Ingrese el valor para la posición [{i}][{j}]: "))
+
+operador = input("Ingrese el operador (+, -, *, /): ")
+valor = int(input("Ingrese el valor para la operación: "))
+
+# Realizar la operación en la matriz
+matriz_resultante = []
+for fila in matriz:
+    nueva_fila = []
+    for elemento in fila:
+        if operador == "+":
+            nueva_fila.append(elemento + valor)
+        elif operador == "-":
+            nueva_fila.append(elemento - valor)
+        elif operador == "*":
+            nueva_fila.append(elemento * valor)
+        elif operador == "/":
+            nueva_fila.append(elemento / valor)
+        else:
+            nueva_fila.append(elemento)
+    matriz_resultante.append(nueva_fila)
+
+print("Matriz resultante:")
+for fila in matriz_resultante:
+    print(fila)
+
 if __name__ == "__main__":
     main()
